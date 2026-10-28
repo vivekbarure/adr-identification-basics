@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADR Identification Basics</title>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #172033;
+  line-height: 1.6;
+}
+header {
+  background: #1557a6;
+  color: white;
+  padding: 25px 18px;
+  text-align: center;
+}
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 20px;
+}
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  margin: 18px 0;
+  box-shadow: 0 4px 15px #15294b15;
+}
+h2 { color: #1557a6; }
+label {
+  display: block;
+  font-weight: bold;
+  margin: 12px 0 5px;
+}
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  font-size: 16px;
+}
+button {
+  background: #ffc400;
+  border: none;
+  padding: 12px 18px;
+  margin-top: 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.feedback {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 8px;
+}
+.good { background: #e8f7ef; color: #145c39; }
+.bad { background: #fff0ef; color: #8a1c13; }
+.notice {
+  background: #fff8dc;
+  padding: 14px;
+  border-left: 5px solid #ffc400;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ADR Identification Basics</h1>
+  <p>Learn to identify possible Adverse Drug Reactions.</p>
+</header>
+
+<main>
+<div class="notice">
+  <strong>Learning note:</strong>
+  These are fictional training scenarios, not medical advice.
+  Serious suspected reactions need urgent professional assessment.
+</div>
+
+<section class="card">
+<h2>How to identify an ADR</h2>
+<ol>
+  <li>Review the patient's symptoms and medical history.</li>
+  <li>Check when the medicine was started or changed.</li>
+  <li>Compare the medicine timeline with symptom onset.</li>
+  <li>Consider other possible causes.</li>
+  <li>Document the suspected medicine and seek clinical review.</li>
+</ol>
+</section>
+
+<section class="card">
+<h2>Case 1: Itching and rash</h2>
+<p>A 45-year-old patient starts a new antibiotic.
+Two hours after the first dose, an itchy rash appears.
+No other new medicines are reported.</p>
+
+<label for="answer1">What is the most likely interpretation?</label>
+<select id="answer1">
+<option value="">Choose an answer</option>
+<option value="a">A possible reaction to the new antibiotic</option>
+<option value="b">Definitely unrelated to medicine</option>
+<option value="c">The medicine is proven to be the cause</option>
+</select>
+<button onclick="check(1,'a',
+'The timing makes an ADR possible, but does not prove causation. A clinician should assess the patient.')">
+Check Answer
+</button>
+<div id="feedback1"></div>
+</section>
+
+<section class="card">
+<h2>Case 2: Dizziness after a dose change</h2>
+<p>A patient's blood-pressure medicine dose is increased.
+The next day, the patient reports dizziness when standing up.</p>
+
+<label for="answer2">What should be considered?</label>
+<select id="answer2">
+<option value="">Choose an answer</option>
+<option value="a">Ignore the symptom</option>
+<option value="b">Consider a possible medicine-related effect and arrange clinical review</option>
+<option value="c">Stop every medicine immediately without advice</option>
+</select>
+<button onclick="check(2,'b',
+'A dose change followed by a symptom is an important clue. Seek professional advice before changing prescribed medicines.')">
+Check Answer
+</button>
+<div id="feedback2"></div>
+</section>
+
+<section class="card">
+<h2>Case 3: Nausea before treatment</h2>
+<p>A patient reports nausea that began two days before
+starting a new medicine. The nausea continues afterward.</p>
+
+<label for="answer3">Which conclusion best fits the timeline?</label>
+<select id="answer3">
+<option value="">Choose an answer</option>
+<option value="a">The new medicine definitely caused it</option>
+<option value="b">The medicine is less likely to explain the original onset; consider other causes too</option>
+<option value="c">No assessment is needed</option>
+</select>
+<button onclick="check(3,'b',
+'Because nausea began before the medicine, the medicine is less likely to explain the original onset. Other causes still need assessment.')">
+Check Answer
+</button>
+<div id="feedback3"></div>
+</section>
+
+<section class="card">
+<h2>Key Takeaways</h2>
+<ul>
+<li>Symptoms after starting medicine may suggest an ADR.</li>
+<li>Timing alone cannot prove that a medicine caused a symptom.</li>
+<li>Check the medicine name, dose, dates and other medicines.</li>
+<li>Document and report suspected reactions appropriately.</li>
+<li>Seek professional guidance before changing treatment.</li>
+</ul>
+<p><strong>Project ID:</strong> task1</p>
+</section>
+</main>
+
+<footer>
+Educational demonstration · Fictional cases · Not a diagnostic tool
+</footer>
+
+<script>
+function check(n, correct, explanation) {
+  const chosen = document.getElementById('answer' + n).value;
+  const box = document.getElementById('feedback' + n);
+
+  if (!chosen) {
+    box.className = 'feedback bad';
+    box.textContent = 'Please choose an answer first.';
+    return;
+  }
+
+  box.className = 'feedback ' +
+    (chosen === correct ? 'good' : 'bad');
+
+  box.textContent =
+    (chosen === correct ? 'Correct! ' : 'Not quite. ') +
+    explanation;
+}
+</script>
+
+</body>
+</html>
